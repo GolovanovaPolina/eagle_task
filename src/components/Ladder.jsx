@@ -1,6 +1,6 @@
 import Step from "./Step";
 
-function Ladder({nutsNum, stepsNum}) {
+function Ladder({stepsNum}) {
     const ladder = [];
     for (let i = 0; i < stepsNum; i++){
         ladder.push(<Step level={i} key={i}/>);
