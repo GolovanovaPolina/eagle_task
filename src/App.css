@@ -1,14 +1,57 @@
-.App {
+body {
+  background: lightblue;
+  padding: 50px 0;
+  font-size: 1.4rem;
+  font-color: darkslategrey;
+}
+
+.form__group {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  margin: 10px 0;
+  align-items: end;
+}
+
+.form__group > * {
+  font-size: 1.4rem;
+}
+
+.play__ladder {
+  position: relative;
+}
+
+.play__eggs {
+   position: relative;
+}
+
+.play__eggs > img {
+  position: absolute;
+  top: calc(100% - 90px);
+  height: 60px;
+}
+
+.play__wrapper {
+  display: grid;
+  grid-template-columns: minmax(10%, 40%) minmax(60%, 80%);
+}
+
+.play__step {
+  position: absolute;
   text-align: center;
-  background-color: lightcyan;
+  border-left: 2px solid darkslategrey;
+  border-top: 2px solid darkslategrey;
+  width: 51px;
+  height: 31px;
 }
 
-.Data {
-  display: flex;
-  justify-content: center;
+.play__node_active > circle {
+  fill: red;
 }
 
-.Data > div {
-  margin: 40px 20px;
+.play__node_default > circle {
+  fill: white;
 }
+
+
+
 
