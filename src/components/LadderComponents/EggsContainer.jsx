@@ -2,6 +2,8 @@ import egg1 from '../../img/egg1.png';
 import egg2 from '../../img/egg2.png';
 import egg3 from '../../img/egg3.png';
 import {FC} from "react";
+import {useSelector} from "react-redux";
+import {IStore} from "../../store/store";
 
 interface IEggProps {
     img:any;
@@ -12,14 +14,15 @@ const Egg: FC<IEggProps> = ({img, left}) => {
     return <img src={img} style={{left}}/>;
 }
 
-function Eggs({nutsNum}) {
+function EggsContainer() {
+    const nutsNum = useSelector((store: IStore) => store.currentNutsNum);
     const pictures = [egg1, egg2, egg3];
     const data = [];
 
     for (let i = 0; i < nutsNum; i++){
         const egg: IEggProps = {
             img: pictures[i % pictures.length],
-            left: 200 - (Math.random() * 10 * nutsNum) % 200,
+            left: i*30,
             key: i,
         }
         data.push(egg);
@@ -32,4 +35,4 @@ function Eggs({nutsNum}) {
     );
 }
 
-export default Eggs;
+export default EggsContainer;

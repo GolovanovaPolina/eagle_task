@@ -15,6 +15,7 @@ export interface IStore {
     nutsNum: number,
     currentNutsNum: number,
     activeNode: TNode,
+    disableLevels: number[];
 }
 
 const store = createStore(reducer, applyMiddleware(ReduxThunk, logger));

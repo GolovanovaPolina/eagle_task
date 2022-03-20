@@ -18,31 +18,35 @@ body {
 
 .play__ladder {
   position: relative;
+  width: 35%;
+  max-height: 650px;
+  margin: auto 0;
 }
 
 .play__eggs {
-   position: relative;
+  position: relative;
 }
 
 .play__eggs > img {
   position: absolute;
-  top: calc(100% - 90px);
   height: 60px;
 }
 
-.play__wrapper {
-  display: grid;
-  grid-template-columns: minmax(10%, 40%) minmax(60%, 80%);
-}
+/*.play__wrapper {
+  !*display: grid;
+  grid-template-columns: minmax(10%, 20%) minmax(80%, 90%);*!
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px 0;
+}*/
 
-.play__step {
+/*.play__step {
+  font-size: 90%;
   position: absolute;
   text-align: center;
   border-left: 2px solid darkslategrey;
   border-top: 2px solid darkslategrey;
-  width: 51px;
-  height: 31px;
-}
+}*/
 
 .play__node_active > circle {
   fill: red;
@@ -51,6 +55,10 @@ body {
 .play__node_default > circle {
   fill: white;
 }
+
+/*#treeWrapper {
+  width: 65%;
+}*/
 
 
 

@@ -1,4 +1,4 @@
-import Eggs from "../components/LadderComponents/Eggs.jsx"
+import EggsContainer from "../components/LadderComponents/EggsContainer.jsx"
 import Ladder from "../components/LadderComponents/Ladder.jsx"
 import {FC} from "react";
 import {useSelector} from "react-redux";
@@ -9,10 +9,10 @@ const LadderContainer: FC = () => {
     const currentNutsNumber = useSelector((store: IStore) => store.currentNutsNum);
 
     return (
-        <div className="play__wrapper">
-            <Eggs nutsNum = {currentNutsNumber} />
-            <Ladder stepsNum = {stepsNumber} />
-        </div>
+        <>
+            {/*<Eggs nutsNum = {currentNutsNumber} />*/}
+            {/*<Ladder stepsNum = {stepsNumber} />*/}
+        </>
 )}
 
 export default LadderContainer;
