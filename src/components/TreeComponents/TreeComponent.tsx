@@ -24,13 +24,12 @@ const TreeComponent:FC<ITreeComponent> = ({tree}) => {
         );
     }
 
-    const placeholder = document.body.clientWidth;
-    const xTranslate = Math.round(placeholder*0.65 / 2 - 25);
-    const yTranslate = 50;
+    const xTranslate = 740 / 2;
+    const yTranslate = 10;
 
     return (
         // @ts-ignore
-        <TreeGraph data={tree.prepareToD3()} orientation="vertical" renderCustomNodeElement={renderRectSvgNode} zoom={0.5} translate={{x: xTranslate, y: yTranslate}}/>
+        <TreeGraph data={tree.prepareToD3()} orientation="vertical" renderCustomNodeElement={renderRectSvgNode} zoom={0.5} translate={{x: xTranslate, y: yTranslate}} />
     )
 };
 export default TreeComponent

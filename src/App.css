@@ -2,8 +2,24 @@ body {
   background: lightblue;
   padding: 50px 0;
   font-size: 1.4rem;
-  font-color: darkslategrey;
 }
+
+.play__eggs {
+  position: relative;
+  height: 500px;
+  width: 80px;
+}
+
+.play__eggs > img {
+  position: absolute;
+  height: 60px;
+}
+
+.play__wrapper {
+  display: flex;
+  margin: 50px 0;
+}
+
 
 .form__group {
   display: grid;
@@ -16,49 +32,9 @@ body {
   font-size: 1.4rem;
 }
 
-.play__ladder {
-  position: relative;
-  width: 35%;
-  max-height: 650px;
-  margin: auto 0;
+#treeWrapper {
+  width: 740px;
 }
-
-.play__eggs {
-  position: relative;
-}
-
-.play__eggs > img {
-  position: absolute;
-  height: 60px;
-}
-
-/*.play__wrapper {
-  !*display: grid;
-  grid-template-columns: minmax(10%, 20%) minmax(80%, 90%);*!
-  display: flex;
-  flex-wrap: wrap;
-  margin: 50px 0;
-}*/
-
-/*.play__step {
-  font-size: 90%;
-  position: absolute;
-  text-align: center;
-  border-left: 2px solid darkslategrey;
-  border-top: 2px solid darkslategrey;
-}*/
-
-.play__node_active > circle {
-  fill: red;
-}
-
-.play__node_default > circle {
-  fill: white;
-}
-
-/*#treeWrapper {
-  width: 65%;
-}*/
 
 
 

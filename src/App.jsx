@@ -1,19 +1,45 @@
-import React, {memo, useState} from "react";
+import React, {memo, useRef, useState} from "react";
 import FormContainer from "./containers/FormContainer.tsx";
-import TreeContainer from "./containers/TreeContainer.tsx";
 import {FC} from "react";
-import LadderContainer from "./containers/LadderContainer.tsx";
 import ThrowComponent from "./components/TreeComponents/ThrowComponent";
-import BarContainer from "./containers/BarContainer";
-import EggsContainer from "./components/LadderComponents/EggsContainer";
-import {useSelector} from "react-redux";
-import {IStore} from "./store/store";
+import PlayContainer from "./containers/PlayContainer";
+import FinishComponent from "./components/TreeComponents/FinishComponent";
+import {
+    setActiveNodeActions,
+    setCurrentNutsNumberActions,
+    addDisableLevelsAction,
+    setNutsNumberActions,
+    setStepsNumberActions, setDisableLevelsAction
+} from "./store/actions";
+import {useDispatch} from "react-redux";
+import {getElement} from "bootstrap/js/src/util";
 
 const App: FC = () => {
     const [start, setStart] = useState(false);
+    const [finish, setFinish] = useState(false);
+
+    const dispatch = useDispatch();
 
     const onReady = () => {
         setStart(true);
+    }
+
+    function onFinish() {
+        setFinish(true);
+    }
+
+    function onReload() {
+        setStart(false);
+        setFinish(false);
+
+        dispatch(setDisableLevelsAction([]));
+        dispatch(setCurrentNutsNumberActions(0));
+        dispatch(setStepsNumberActions(0));
+        dispatch(setNutsNumberActions(0));
+        dispatch(setActiveNodeActions(null));
+
+        document.getElementById("input-steps").value = "";
+        document.getElementById("input-nuts").value = "";
     }
 
     return (
@@ -22,20 +48,13 @@ const App: FC = () => {
             {
                 start &&
                 <>
-                    <div className="play__wrapper">
-                        <div className="play__left-column">
-                            <EggsContainer />
-                            <BarContainer />
-                        </div>
-                    </div>
-
-                    <TreeContainer />
-                    <ThrowComponent />
+                    <PlayContainer/>
+                    {!finish && <ThrowComponent onFinish={onFinish} />}
                 </>
             }
-
-
-
+            {
+                finish && <FinishComponent onReload={onReload}/>
+            }
         </div>
     );
 }

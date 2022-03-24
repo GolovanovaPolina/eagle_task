@@ -1,28 +1,31 @@
-import {FC, useState} from "react";
+import {FC, useLayoutEffect, useRef, useState} from "react";
 import {Button, Form, FormLabel} from "react-bootstrap";
 // @ts-ignore
-import {setActiveNodeActions, setCurrentNutsNumberActions, setDisableLevelsAction} from "../../store/actions.tsx";
+import {
+    setActiveNodeActions,
+    decreaseCurrentNutsNumberActions,
+    addDisableLevelsAction,
+    setCurrentNutsNumberActions, setNutsNumberActions, setStepsNumberActions
+} from "../../store/actions";
 import {useDispatch, useSelector} from "react-redux";
 // @ts-ignore
 import CheckComponent from "./CheckComponent.tsx";
 // @ts-ignore
 import {IStore} from "../../store/store.tsx";
-import FormCheckLabel from "react-bootstrap/FormCheckLabel";
 
-/*interface IThrowContainerProps {
-    onStep: () => void;
-}*/
+interface IThrowComponentProps {
+    onFinish: () => void;
+}
 
-const ThrowComponent: FC = () => {
+const ThrowComponent: FC<IThrowComponentProps> = ({onFinish}) => {
     const dispatch = useDispatch();
     const activeNode = useSelector((store: IStore) => store.activeNode);
-    const nutsNumber = useSelector((store: IStore) => store.nutsNum);
     const stepsNumber = useSelector((store: IStore) => store.stepsNum);
 
     const [fail, setFail] = useState(true);
-    const [finish, setFinish] = useState(false);
 
-    const steps = Array.from(Array(stepsNumber).keys());
+    const playRef = useRef(null);
+    useLayoutEffect(() => {playRef.current.scrollIntoView()} , []);
 
     const onThrow = (e) => {
         const fail = e.target.value === "true";
@@ -30,21 +33,22 @@ const ThrowComponent: FC = () => {
     }
 
     const onProceed = () => {
+        const steps = Array.from(Array(stepsNumber+1).keys());
+
         if (fail) {
-            if (activeNode.children[0].isLeaf()){
-                setFinish(true);
+            if (activeNode.children[0].isLeaf()) {
+                onFinish();
             }
-            dispatch(setDisableLevelsAction(steps.slice(activeNode.name)));
-            dispatch(setCurrentNutsNumberActions(nutsNumber - 1));
+            console.log(steps.slice(activeNode.name));
+            dispatch(addDisableLevelsAction(steps.slice(activeNode.name)));
+            dispatch(decreaseCurrentNutsNumberActions(1));
             dispatch(setActiveNodeActions(activeNode.children[0]));
         }
         else {
             if (activeNode.children[1].isLeaf()) {
-                setFinish(true);
+                onFinish();
             }
-            console.log(steps.slice(0, activeNode));
-            dispatch(setDisableLevelsAction(steps.slice(0, activeNode)));
-            dispatch(setCurrentNutsNumberActions(nutsNumber));
+            dispatch(addDisableLevelsAction(steps.slice(0, activeNode.name)));
             dispatch(setActiveNodeActions(activeNode.children[1]));
         }
     }
@@ -52,14 +56,12 @@ const ThrowComponent: FC = () => {
     return (
         <Form>
             <Form.Group>
-                { !finish &&
-                    <div className="text-center">
-                        <FormLabel className="px-5">Бросок со ступени №{activeNode.name}. Орех разбился?</FormLabel>
-                        <CheckComponent checkedValue={fail}   onCheckHandler={onThrow}/>
-                        <Button size="lg" className="my-3 col-4 d-block offset-4" onClick = {onProceed}>Продолжить!</Button>
-                    </div>
-                }
-                {finish && <p>Прочность равна ...</p>}
+                <div ref={playRef} className="text-center">
+                    <FormLabel className="px-5">Бросок со ступени №{activeNode.name}. Орех разбился?</FormLabel>
+                    <CheckComponent checkedValue={fail}   onCheckHandler={onThrow}/>
+                    <Button size="lg" className="my-3 col-4 d-block offset-4" onClick ={onProceed}>Продолжить!</Button>
+                </div>
+
             </Form.Group>
 
         </Form>

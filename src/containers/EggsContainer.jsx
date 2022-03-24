@@ -1,17 +1,17 @@
-import egg1 from '../../img/egg1.png';
-import egg2 from '../../img/egg2.png';
-import egg3 from '../../img/egg3.png';
+import egg1 from '../img/egg1.png';
+import egg2 from '../img/egg2.png';
+import egg3 from '../img/egg3.png';
 import {FC} from "react";
 import {useSelector} from "react-redux";
-import {IStore} from "../../store/store";
+import {IStore} from "../store/store";
 
 interface IEggProps {
     img:any;
-    left: number;
+    bottom: number;
 }
 
-const Egg: FC<IEggProps> = ({img, left}) => {
-    return <img src={img} style={{left}}/>;
+const Egg: FC<IEggProps> = ({img, bottom}) => {
+    return <img src={img} style={{bottom}} alt="egg" />
 }
 
 function EggsContainer() {
@@ -20,17 +20,16 @@ function EggsContainer() {
     const data = [];
 
     for (let i = 0; i < nutsNum; i++){
-        const egg: IEggProps = {
+        const egg = {
             img: pictures[i % pictures.length],
-            left: i*30,
-            key: i,
+            bottom: (i*70) % 500,
         }
         data.push(egg);
     }
 
     return (
         <div className="play__eggs">
-            {data.map((egg) =>  <Egg {...egg} />)}
+            {data.map((egg, index) => <Egg img={egg.img} bottom={egg.bottom} key={index} />)}
         </div>
     );
 }
