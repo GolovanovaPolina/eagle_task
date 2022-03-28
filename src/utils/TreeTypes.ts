@@ -67,6 +67,7 @@ export class TTree {
         this.build();
     }
 
+    /* Получаем высоту дерева. */
     getLevelNumber(stepsNumber, nutsNumber) {
         const k = Math.min(stepsNumber, nutsNumber);
         const n = stepsNumber;
@@ -135,6 +136,7 @@ export class TTree {
 
     }
 
+    /* Преобразование данных для отображения. */
     getDataChild(node): TD3Node[] {
         if (node.children.length === 0) return [];
         const children = [];
