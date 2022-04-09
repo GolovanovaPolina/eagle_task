@@ -3,11 +3,11 @@ import React, {memo, useEffect, useState} from 'react';
 import {FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {IStore} from "../store/store";
-import TreeComponent from "../components/TreeComponents/TreeComponent";
+import TreeComponent from "../components/TreeComponent";
 import {TTree} from "../utils/TreeTypes";
 import {setActiveNodeActions} from "../store/actions";
 
-const TreeContainer: FC = () => {
+const TreeWrapperComponent: FC = () => {
     const dispatch = useDispatch();
     const stepsNumber = useSelector((store: IStore) => store.stepsNum);
     const nutsNumber = useSelector((store: IStore) => store.nutsNum);
@@ -25,5 +25,5 @@ const TreeContainer: FC = () => {
     );
 }
 
-export default memo(TreeContainer);
+export default memo(TreeWrapperComponent);
 

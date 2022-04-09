@@ -6,12 +6,12 @@ import {
     decreaseCurrentNutsNumberActions,
     addDisableLevelsAction,
     setCurrentNutsNumberActions, setNutsNumberActions, setStepsNumberActions
-} from "../../store/actions";
+} from "../store/actions";
 import {useDispatch, useSelector} from "react-redux";
 // @ts-ignore
 import CheckComponent from "./CheckComponent.tsx";
 // @ts-ignore
-import {IStore} from "../../store/store.tsx";
+import {IStore} from "../store/store.tsx";
 
 interface IThrowComponentProps {
     onFinish: () => void;
@@ -39,7 +39,6 @@ const ThrowComponent: FC<IThrowComponentProps> = ({onFinish}) => {
             if (activeNode.children[0].isLeaf()) {
                 onFinish();
             }
-            console.log(steps.slice(activeNode.name));
             dispatch(addDisableLevelsAction(steps.slice(activeNode.name)));
             dispatch(decreaseCurrentNutsNumberActions(1));
             dispatch(setActiveNodeActions(activeNode.children[0]));
@@ -57,7 +56,7 @@ const ThrowComponent: FC<IThrowComponentProps> = ({onFinish}) => {
         <Form>
             <Form.Group>
                 <div ref={playRef} className="text-center">
-                    <FormLabel className="px-5">Бросок со ступени №{activeNode.name}. Орех разбился?</FormLabel>
+                    <FormLabel className="px-5">Бросок со ступени №{activeNode.name}. Яйцо разбилось?</FormLabel>
                     <CheckComponent checkedValue={fail}   onCheckHandler={onThrow}/>
                     <Button size="lg" className="my-3 col-4 d-block offset-4" onClick ={onProceed}>Продолжить!</Button>
                 </div>

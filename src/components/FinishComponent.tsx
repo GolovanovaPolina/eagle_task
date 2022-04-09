@@ -1,6 +1,6 @@
 import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {IStore} from "../../store/store";
+import {IStore} from "../store/store";
 
 function FinishComponent({onReload}) {
     const activeNode = useSelector((store: IStore) => store.activeNode);

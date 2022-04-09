@@ -14,7 +14,7 @@ interface IFormContainerProps {
     onReady: (ChangeEvent) => void;
 }
 
-const FormContainer: FC<IFormContainerProps> = ({onReady}) => {
+const FormComponent: FC<IFormContainerProps> = ({onReady}) => {
     const dispatch = useDispatch();
 
     const onClickHandlerSteps = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,4 +42,4 @@ const FormContainer: FC<IFormContainerProps> = ({onReady}) => {
 
     )}
 
-export default FormContainer;
+export default FormComponent;

@@ -2,7 +2,7 @@ import {Bar, BarChart, Cell, LabelList, XAxis, YAxis} from "recharts";
 import {useSelector} from "react-redux";
 import {IStore} from "../store/store";
 
-function BarContainer() {
+function BarComponent() {
     const stepsNumber = useSelector((store: IStore) => store.stepsNum);
     const data = [];
     for (let i = 1, j = stepsNumber; i <= stepsNumber; i++, j--) {
@@ -21,7 +21,7 @@ function BarContainer() {
 
     return (
         <>
-            <BarChart barCategoryGap={0} width={500} height={500} data={data} layout="vertical">
+            <BarChart barCategoryGap={0} width={300} height={500} data={data} layout="vertical">
                 <XAxis type="number" hide/>
                 <YAxis type="category" hide/>
                 <Bar dataKey="step">
@@ -41,4 +41,4 @@ function BarContainer() {
     );
 }
 
-export default BarContainer;
+export default BarComponent;

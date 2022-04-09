@@ -14,7 +14,7 @@ const Egg: FC<IEggProps> = ({img, bottom}) => {
     return <img src={img} style={{bottom}} alt="egg" />
 }
 
-function EggsContainer() {
+function EggsComponent() {
     const nutsNum = useSelector((store: IStore) => store.currentNutsNum);
     const pictures = [egg1, egg2, egg3];
     const data = [];
@@ -34,4 +34,4 @@ function EggsContainer() {
     );
 }
 
-export default EggsContainer;
+export default EggsComponent;

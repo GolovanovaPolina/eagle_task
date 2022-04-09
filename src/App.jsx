@@ -1,18 +1,16 @@
 import React, {memo, useRef, useState} from "react";
-import FormContainer from "./containers/FormContainer.tsx";
+import FormComponent from "./components/FormComponent.tsx";
 import {FC} from "react";
-import ThrowComponent from "./components/TreeComponents/ThrowComponent";
-import PlayContainer from "./containers/PlayContainer";
-import FinishComponent from "./components/TreeComponents/FinishComponent";
+import ThrowComponent from "./components/ThrowComponent";
+import PlayWrapperComponent from "./components/PlayWrapperComponent";
+import FinishComponent from "./components/FinishComponent";
 import {
     setActiveNodeActions,
     setCurrentNutsNumberActions,
-    addDisableLevelsAction,
     setNutsNumberActions,
     setStepsNumberActions, setDisableLevelsAction
 } from "./store/actions";
 import {useDispatch} from "react-redux";
-import {getElement} from "bootstrap/js/src/util";
 
 const App: FC = () => {
     const [start, setStart] = useState(false);
@@ -44,11 +42,11 @@ const App: FC = () => {
 
     return (
         <div className="container">
-            <FormContainer onReady={onReady}/>
+            <FormComponent onReady={onReady}/>
             {
                 start &&
                 <>
-                    <PlayContainer/>
+                    <PlayWrapperComponent/>
                     {!finish && <ThrowComponent onFinish={onFinish} />}
                 </>
             }

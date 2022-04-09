@@ -1,9 +1,9 @@
 // @ts-ignore
 import React, {FC} from "react";
 import TreeGraph from "react-d3-tree";
-import {TTree} from "../../utils/TreeTypes";
+import {TTree} from "../utils/TreeTypes";
 import {useSelector} from "react-redux";
-import {IStore} from "../../store/store";
+import {IStore} from "../store/store";
 
 interface ITreeComponent {
     tree: TTree;
